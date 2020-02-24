@@ -44,5 +44,20 @@
     "@babel/polyfill": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react",
+      "@babel/core"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": false
+        }
+      ]
+    ]
   }
 }
