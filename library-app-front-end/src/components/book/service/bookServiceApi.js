@@ -1,5 +1,7 @@
 export default class BookServiceApi {
-    _apiBase = 'http://localhost:8080/api/v1/book';
+    _apiBase = 'http://localhost:8080/book/get';
+
+    _apiDelete = 'http://localhost:8080/book/delete';
 
     async getBookResponse(url) {
         const response = await fetch(`${this._apiBase}/${url}`);
@@ -13,5 +15,13 @@ export default class BookServiceApi {
 
     async getAllBooks() {
         return await this.getBookResponse('all');
+    }
+
+
+    async removeBook(bookId) {
+        return await fetch(this._apiDelete + '/' +bookId, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache' // *default, no-cache, reload, force-cache, only-if-cached
+        });
     }
 }

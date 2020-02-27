@@ -1,3 +1,7 @@
 .books-grid {
     margin: 10px;
 }
+
+.action-col-style {
+    max-width: 30px;
+}
