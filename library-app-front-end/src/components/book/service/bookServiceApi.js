@@ -17,6 +17,10 @@ export default class BookServiceApi {
         return await this.getBookResponse('all');
     }
 
+    async getBookById(bookId) {
+        return await this.getBookResponse('one/' + bookId);
+    }
+
 
     async removeBook(bookId) {
         return await fetch(this._apiDelete + '/' +bookId, {

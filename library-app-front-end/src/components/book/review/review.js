@@ -1,11 +1,42 @@
 import React, {Component} from 'react';
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import FormControl from "react-bootstrap/FormControl";
+import BookServiceApi from "../service/bookServiceApi";
 
 export default class Review extends Component {
     state = {
         show: false
     };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            bookData:
+                {
+                    id: '',
+                    name: '',
+                    description: '',
+                    genres: []
+                }
+            ,
+            show: false
+        };
+    }
+
+    componentWillMount() {
+        this.getBookData()
+            .then(data => this.setState({bookData: data}))
+            .catch(reason => alert("Ошибка: " + reason));
+    }
+
+    getBookData() {
+        const bookServiceApi = new BookServiceApi();
+        return bookServiceApi.getBookById();
+    }
 
     onClickHandler = () => {
         this.setState({show: true})
@@ -16,7 +47,7 @@ export default class Review extends Component {
     };
 
     render() {
-        const {bookName} = this.props;
+        const { bookName } = this.props;
 
         return (
             <div>
@@ -28,13 +59,40 @@ export default class Review extends Component {
                     <Modal.Header closeButton>
                         <Modal.Title>Просмотрт издания: {bookName}</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Body>
+                        <Form>
+                            <Form.Group as={Col} controlId="formGridBookName">
+                                <Form.Label>Наименование</Form.Label>
+                                <Form.Control placeholder="Наименование издания" defaultValue={bookName}/>
+                            </Form.Group>
+
+                            <Form.Group as={Col} controlId="formGridAuthors">
+                                <Form.Label>Авторы</Form.Label>
+                                <Form.Control placeholder="Авторы" defaultValue={bookName}/>
+                            </Form.Group>
+
+                            <Form.Group as={Col} controlId="formGridGenres">
+                                <Form.Label>Жанры</Form.Label>
+                                <Form.Control placeholder="Жанры" defaultValue={bookName}/>
+                            </Form.Group>
+
+                            <Form.Group controlId="formGridDescription">
+                                <Form.Label>Описание</Form.Label>
+                                <FormControl as="textarea">{bookName}</FormControl>
+                            </Form.Group>
+
+                            <Form.Group controlId="formGridComments">
+                                <Form.Label>Комментарии</Form.Label>
+                                <FormControl as="textarea">{bookName}</FormControl>
+                            </Form.Group>
+                        </Form>
+                    </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.onHandleClose}>
-                            Close
+                            Отменить
                         </Button>
                         <Button variant="primary" onClick={this.onHandleClose}>
-                            Save Changes
+                            Сохранить
                         </Button>
                     </Modal.Footer>
                 </Modal>

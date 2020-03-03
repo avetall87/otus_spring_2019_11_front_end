@@ -46,7 +46,7 @@ export default class Book extends Component {
 
         return (
             <div>
-                <Table onSelect={this.onSelectHandler} className={'App-margin-top'} striped bordered hover>
+                <Table onSelect={this.onSelectHandler} striped bordered hover>
                     <thead>
                     <tr>
                         <th>#</th>
