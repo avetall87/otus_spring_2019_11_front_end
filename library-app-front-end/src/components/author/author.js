@@ -5,6 +5,10 @@ import Table from "react-bootstrap/Table";
 
 export default class Author extends Component {
 
+    authorTableStyle = {
+        margin: '10px'
+    };
+
     constructor(props) {
         super(props);
 
@@ -36,7 +40,7 @@ export default class Author extends Component {
         console.log(this.state);
 
         return (
-            <div>
+            <div style={this.authorTableStyle}>
                 <Table onSelect={this.onSelectHandler} striped bordered hover>
                     <thead>
                     <tr>
@@ -50,10 +54,10 @@ export default class Author extends Component {
                     {
                         this.state.authorData.map((item, index) =>
                             <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{item.firstName}</td>
-                                <td>{item.lastName}</td>
-                                <td>{item.patronymic}</td>
+                                <td className='table-td-height'>{index + 1}</td>
+                                <td className='table-td-height'>{item.firstName}</td>
+                                <td className='table-td-height'>{item.lastName}</td>
+                                <td className='table-td-height'>{item.patronymic}</td>
                             </tr>
                         )
                     }
