@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../book/book.css';
+import './book.css';
 import BookGridRow from "./bookGrid";
 import BookServiceApi from "./service/bookServiceApi";
 import {BookService} from "./service/bookService";
