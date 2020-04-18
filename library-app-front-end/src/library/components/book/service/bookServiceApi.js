@@ -6,13 +6,16 @@ export default class BookServiceApi {
     _apiSave = 'http://localhost:8080/book/update';
 
     async getBookResponse(url) {
-        const response = await fetch(`${this._apiBase}/${url}`);
+        const response = await fetch(`${this._apiBase}/${url}`, {
+            'Access-Control-Allow-Origin' : '*',
+            'Access-Control-Allow-Credentials' : 'true',
+        });
 
-        if (!response.ok) {
-            throw new Error(`Could not fetch ${url} , received ${response.status}`);
-        }
+            if (!response.ok) {
+                throw new Error(`Could not fetch ${url} , received ${response.status}`);
+            }
 
-        return await response.json();
+            return await response.json();
     }
 
     async getAllBooks() {
